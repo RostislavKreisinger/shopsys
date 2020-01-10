@@ -988,7 +988,7 @@
 
     <target name="tests" depends="test-db-demo,test-product-search-recreate-structure,test-product-search-export-products,tests-unit,tests-functional,tests-smoke" description="Runs unit, functional and smoke tests. Builds new test database in the process."/>
 
-    <target name="tests-only" depends="test-db-create,test-db-demo,test-error-pages-generate,assets,test-product-search-recreate-structure,test-product-search-export-products,tests-unit,tests-functional,tests-smoke" description="Runs unit, functional and smoke tests. Builds new test database in the process."/>
+    <target name="tests-only" depends="test-db-create,test-db-demo,test-error-pages-generate,assets,npm,test-product-search-recreate-structure,test-product-search-export-products,tests-unit,tests-functional,tests-smoke" description="Runs unit, functional and smoke tests. Builds new test database in the process."/>
 
     <target name="tests-acceptance" depends="production-protection,clean,clean-redis,test-db-dump" description="Runs acceptance tests. Running Selenium server is required (Selenium is always running in Docker setup).">
         <available file="${path.env.test}" type="file" property="path.env.test.existed"/>
