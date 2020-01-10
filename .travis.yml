@@ -16,4 +16,4 @@ install:
     - docker-compose exec php-fpm composer install --no-interaction
 
 script:
-    - docker-compose exec php-fpm ./phing db-create test-db-create build-demo-dev tests-acceptance
+    - docker-compose exec php-fpm ./phing standards tests-only

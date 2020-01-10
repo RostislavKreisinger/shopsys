@@ -560,6 +560,14 @@
         </exec>
     </target>
 
+    <target name="test-error-pages-generate" depends="redis-check" description="Generates error pages displayed in production environment.">
+        <exec executable="${path.php.executable}" passthru="true" checkreturn="true">
+            <arg value="${path.bin-console}"/>
+            <arg value="shopsys:error-page:generate-all"/>
+            <arg value="--env=test"/>
+        </exec>
+    </target>
+
     <target name="eslint-check" description="Find JS coding standard violations in all files using ESLint and print human readable output." hidden="true">
         <exec executable="${path.eslint.executable}" passthru="true" checkreturn="true">
             <arg value="--color"/>
@@ -979,6 +987,8 @@
     <target name="test-product-search-recreate-structure" depends="production-protection,test-product-search-delete-structure,test-product-search-create-structure" description="Recreates structure for searching via elasticsearch in test environment (deletes existing structure and creates new one)"/>
 
     <target name="tests" depends="test-db-demo,test-product-search-recreate-structure,test-product-search-export-products,tests-unit,tests-functional,tests-smoke" description="Runs unit, functional and smoke tests. Builds new test database in the process."/>
+
+    <target name="tests-only" depends="test-db-create,test-db-demo,test-error-pages-generate,assets,test-product-search-recreate-structure,test-product-search-export-products,tests-unit,tests-functional,tests-smoke" description="Runs unit, functional and smoke tests. Builds new test database in the process."/>
 
     <target name="tests-acceptance" depends="production-protection,clean,clean-redis,test-db-dump" description="Runs acceptance tests. Running Selenium server is required (Selenium is always running in Docker setup).">
         <available file="${path.env.test}" type="file" property="path.env.test.existed"/>
