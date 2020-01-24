@@ -17,7 +17,8 @@ install:
 
 jobs:
     include:
-        - stage: Build all
+        - stage: Tests
+          name: Build all
           script: docker-compose exec php-fpm ./phing db-create test-db-create build-demo-dev tests-acceptance
-        - stage: Build test only
+        - name: Build tests only
           script: docker-compose exec php-fpm ./phing test-db-create tests
