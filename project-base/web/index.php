@@ -13,13 +13,12 @@ if (file_exists(__DIR__ . '/../MAINTENANCE')) {
 }
 
 require dirname(__DIR__) . '/app/autoload.php';
-
-$_SERVER['APP_ENV'] = Environment::getEnvironment(false);
-$_SERVER['APP_DEBUG'] = EnvironmentType::isDebug($_SERVER['APP_ENV']);
-
 require dirname(__DIR__).'/config/bootstrap.php';
 
-if ($_SERVER['APP_DEBUG']) {
+$env = $_SERVER['APP_ENV'] ?? $_ENV['APP_ENV'] ?? 'dev';
+$debug = (bool)($_SERVER['APP_DEBUG'] ?? $_ENV['APP_DEBUG'] ?? ('dev' === $env));
+
+if ($debug) {
     umask(0000);
 
     Debug::enable();
@@ -33,7 +32,7 @@ if ($trustedHosts = $_SERVER['TRUSTED_HOSTS'] ?? $_ENV['TRUSTED_HOSTS'] ?? false
     Request::setTrustedHosts([$trustedHosts]);
 }
 
-$kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
+$kernel = new Kernel($env, $debug);
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();

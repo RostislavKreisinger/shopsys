@@ -21,9 +21,6 @@
             "Shopsys\\ReadModelBundle\\": "packages/read-model/src/",
             "Shopsys\\FrameworkBundle\\": "packages/framework/src/"
         },
-        "classmap": [
-            "project-base/app/Environment.php"
-        ],
         "files": [
             "packages/framework/src/Component/Filesystem/Flysystem/VolumeDriver.php",
             "packages/framework/src/Component/Translation/functions.php",
