@@ -49,10 +49,10 @@ export default class FileUploadInit {
     }
 
     static init () {
-        FileUpload.initDelete();
-        FileUpload.initSort();
+        FileUploadInit.initDelete();
+        FileUploadInit.initSort();
     }
 
 }
 
-(new Register()).registerCallback(FileUpload.init);
+(new Register()).registerCallback(FileUploadInit.init);
