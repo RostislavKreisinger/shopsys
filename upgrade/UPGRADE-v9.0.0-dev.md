@@ -543,6 +543,23 @@ There you can find links to upgrade notes for other versions too.
           </div>
         ```
 
+- webpack fixes [#1626](https://github.com/shopsys/shopsys/pull/1626)
+    - update your `assets/js/frontend/components/searchAutocomplete.js`
+        ```diff
+          Ajax.ajaxPendingCall('Shopsys.search.autocomplete.searchRequest', {
+        -     loaderElement: null,
+        +     loaderElement: '.js-search-autocomplete-submit',
+            // ...
+        });
+        ```
+    - update your `templates/Front/Content/Search/searchBox.html.twig`
+        ```diff
+        -  <button type="submit" class="btn search__form__button">
+        +  <button type="submit" class="btn search__form__button js-search-autocomplete-submit">
+               {{ 'Search [verb]'|trans }}
+           </button>
+        ```
+ 
 ### Tools
 
 - apply coding standards checks on your `app` folder ([#1306](https://github.com/shopsys/shopsys/pull/1306))
