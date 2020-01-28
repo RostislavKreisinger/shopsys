@@ -118,8 +118,8 @@ class ImageUploadType extends AbstractType
             'multiple' => $this->isMultiple($options),
             'mapped' => false,
             'attr' => [
-                'accept' => 'image/*'
-            ]
+                'accept' => 'image/*',
+            ],
         ]);
     }
 
