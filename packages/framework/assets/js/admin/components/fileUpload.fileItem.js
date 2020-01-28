@@ -72,7 +72,7 @@ export default class FileItem {
         }
     }
 
-    static removeError($button) {
+    static removeError ($button) {
         $button
             .closest('.js-file-upload')
             .siblings('.js-validation-errors-list')
