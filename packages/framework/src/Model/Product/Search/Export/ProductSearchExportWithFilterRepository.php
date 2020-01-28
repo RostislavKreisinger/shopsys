@@ -98,7 +98,7 @@ class ProductSearchExportWithFilterRepository
         $results = [];
         /** @var \Shopsys\FrameworkBundle\Model\Product\Product $product */
         foreach ($query->getResult() as $product) {
-            $results[] = $this->extractResult($product, $domainId, $locale);
+            $results[$product->getId()] = $this->extractResult($product, $domainId, $locale);
         }
 
         return $results;

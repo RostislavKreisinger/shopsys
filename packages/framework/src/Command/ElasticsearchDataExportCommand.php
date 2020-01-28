@@ -12,14 +12,14 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-class ElasticsearchIndexesCreateCommand extends Command
+class ElasticsearchDataExportCommand extends Command
 {
     private const ARGUMENT_INDEX_NAME = 'name';
 
     /**
      * @var string
      */
-    protected static $defaultName = 'shopsys:elasticsearch:indexes-create';
+    protected static $defaultName = 'shopsys:elasticsearch:data-export';
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Elasticsearch\IndexRegistry
@@ -47,11 +47,11 @@ class ElasticsearchIndexesCreateCommand extends Command
                 self::ARGUMENT_INDEX_NAME,
                 InputArgument::OPTIONAL,
                 sprintf(
-                    'Which index will be created? Available indexes: "%s"',
+                    'Which index data will be exported? Available indexes: "%s"',
                     implode(', ', $this->indexRegistry->getRegisteredIndexNames())
                 )
             )
-            ->setDescription('Creates structure in Elasticsearch');
+            ->setDescription('Export data in Elasticsearch');
     }
 
     /**
@@ -62,14 +62,14 @@ class ElasticsearchIndexesCreateCommand extends Command
     {
         $symfonyStyleIo = new SymfonyStyle($input, $output);
         $indexName = $input->getArgument(self::ARGUMENT_INDEX_NAME);
-        $output->writeln('Creating structure');
+        $output->writeln('Exporting data');
 
         if ($indexName) {
-            $this->indexFacade->createIndex($this->indexRegistry->getIndexByIndexName($indexName), $output);
+            $this->indexFacade->exportByIndex($this->indexRegistry->getIndexByIndexName($indexName), $output);
         } else {
-            $this->indexFacade->createIndexes($this->indexRegistry->getRegisteredExporters(), $output);
+            $this->indexFacade->exportByIndexes($this->indexRegistry->getRegisteredExporters(), $output);
         }
 
-        $symfonyStyleIo->success('Structure created successfully!');
+        $symfonyStyleIo->success('Data was exported successfully!');
     }
 }

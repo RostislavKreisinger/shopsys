@@ -88,4 +88,20 @@ class IndexFacade
             $this->deleteIndex($index, $output);
         }
     }
+
+    public function exportByIndex(AbstractIndex $index, OutputInterface $output): void
+    {
+        foreach ($this->domain->getAll() as $domainConfig) {
+            $output->writeln(sprintf('Exporting data of "%s" on domain "%s"', $index->getName(), $domainConfig->getId()));
+            $indexDefinition = $this->indexDefinitionLoader->getIndexDefinition($index, $domainConfig->getId());
+            $this->indexManager->export($indexDefinition, [], $output);
+        }
+    }
+
+    public function exportByIndexes(array $indexes, OutputInterface $output): void
+    {
+        foreach ($indexes as $index) {
+            $this->exportByIndex($index, $output);
+        }
+    }
 }
