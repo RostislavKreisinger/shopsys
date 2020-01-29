@@ -11,7 +11,7 @@ abstract class AbstractIndex
     /**
      * @var \Shopsys\FrameworkBundle\Model\Elasticsearch\DataProviderInterface
      */
-    private $dataProvider;
+    protected $dataProvider;
 
     /**
      * @param \Shopsys\FrameworkBundle\Model\Elasticsearch\DataProviderInterface $dataProvider

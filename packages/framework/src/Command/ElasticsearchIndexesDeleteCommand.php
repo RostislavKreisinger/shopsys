@@ -67,7 +67,7 @@ class ElasticsearchIndexesDeleteCommand extends Command
         if ($documentName) {
             $this->indexFacade->deleteIndex($this->indexRegistry->getIndexByIndexName($documentName), $output);
         } else {
-            $this->indexFacade->deleteIndexes($this->indexRegistry->getRegisteredExporters(), $output);
+            $this->indexFacade->deleteIndexes($this->indexRegistry->getRegisteredIndexes(), $output);
         }
 
         $symfonyStyleIo->success('Structure deleted successfully!');

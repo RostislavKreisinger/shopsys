@@ -89,6 +89,10 @@ class IndexFacade
         }
     }
 
+    /**
+     * @param \Shopsys\FrameworkBundle\Model\Elasticsearch\AbstractIndex $index
+     * @param \Symfony\Component\Console\Output\OutputInterface $output
+     */
     public function exportByIndex(AbstractIndex $index, OutputInterface $output): void
     {
         foreach ($this->domain->getAll() as $domainConfig) {
@@ -98,6 +102,10 @@ class IndexFacade
         }
     }
 
+    /**
+     * @param \Shopsys\FrameworkBundle\Model\Elasticsearch\AbstractIndex[] $indexes
+     * @param \Symfony\Component\Console\Output\OutputInterface $output
+     */
     public function exportByIndexes(array $indexes, OutputInterface $output): void
     {
         foreach ($indexes as $index) {

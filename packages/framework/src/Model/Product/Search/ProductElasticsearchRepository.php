@@ -10,7 +10,7 @@ use Shopsys\FrameworkBundle\Component\Elasticsearch\ElasticsearchStructureManage
 
 class ProductElasticsearchRepository
 {
-    public const ELASTICSEARCH_INDEX = 'product_';
+    public const ELASTICSEARCH_INDEX = 'product';
 
     /**
      * @var string

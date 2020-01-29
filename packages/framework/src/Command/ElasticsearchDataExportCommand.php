@@ -67,7 +67,7 @@ class ElasticsearchDataExportCommand extends Command
         if ($indexName) {
             $this->indexFacade->exportByIndex($this->indexRegistry->getIndexByIndexName($indexName), $output);
         } else {
-            $this->indexFacade->exportByIndexes($this->indexRegistry->getRegisteredExporters(), $output);
+            $this->indexFacade->exportByIndexes($this->indexRegistry->getRegisteredIndexes(), $output);
         }
 
         $symfonyStyleIo->success('Data was exported successfully!');

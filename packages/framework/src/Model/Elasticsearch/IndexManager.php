@@ -122,6 +122,11 @@ class IndexManager
         ]);
     }
 
+    /**
+     * @param string $indexAlias
+     * @param array $data
+     * @param bool $createIfNotExists
+     */
     public function bulkUpdate(string $indexAlias, array $data, bool $createIfNotExists = true): void
     {
         $params = ['body' => []];
@@ -148,6 +153,11 @@ class IndexManager
         }
     }
 
+    /**
+     * @param \Shopsys\FrameworkBundle\Model\Elasticsearch\IndexDefinition $indexDefinition
+     * @param array $restrictToIds
+     * @param \Symfony\Component\Console\Output\OutputInterface $output
+     */
     public function export(IndexDefinition $indexDefinition, array $restrictToIds, OutputInterface $output): void
     {
         $indexAlias = $indexDefinition->getIndexAlias();

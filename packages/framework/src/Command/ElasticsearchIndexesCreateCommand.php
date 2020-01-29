@@ -67,7 +67,7 @@ class ElasticsearchIndexesCreateCommand extends Command
         if ($indexName) {
             $this->indexFacade->createIndex($this->indexRegistry->getIndexByIndexName($indexName), $output);
         } else {
-            $this->indexFacade->createIndexes($this->indexRegistry->getRegisteredExporters(), $output);
+            $this->indexFacade->createIndexes($this->indexRegistry->getRegisteredIndexes(), $output);
         }
 
         $symfonyStyleIo->success('Structure created successfully!');
